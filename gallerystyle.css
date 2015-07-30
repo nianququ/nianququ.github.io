@@ -1,0 +1,199 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: #fff;
+	color: #555;
+	font-family: 'Avenir Next', 'Lantinghei SC';
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;/* 字体平滑 */
+	-moz-font-smoothing: antialiased;
+}
+
+.wrap{
+	width: 100%;
+	height: 600px;
+	position: absolute;
+	top: 50%;
+	margin-top: -300px;/* 负外边距*/
+	background: #333;
+	overflow: hidden;/* 超出之外的样式隐藏 */
+	-webkit-perspective: 800px;
+	-moz-perspective: 800px;
+}
+
+.photo{
+	width: 260px;
+	height: 320px;/* 忘了写px,非居中时显示不出大小 */
+	position: absolute;
+	z-index: 1;/* 设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。 */
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
+    -webkit-transition: all 0.6s;
+	-moz-transition: all 0.6s;
+}
+
+.photo .side{
+	width: 100%;
+	height: 100%;
+	background: #eee;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.photo .side_front{
+
+}
+
+.photo .side_front .image{
+	width: 100%;
+	height: 250px;
+	line-height: 250px;
+	overflow: hidden;
+}
+ 
+.photo .side_front .image img{
+    width: 100%;
+}
+
+.photo .side_front .caption{
+    text-align: center;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+.photo .side_back{
+    
+}
+
+.photo .side_back .desc{
+	color: #666;
+	font-size: 14px;
+	line-height: 1.5em;
+}
+
+/*当前选中海报的样式*/
+.photo_center{
+	width: 260px;
+	height: 320px;
+	left: 50%;
+	top: 50%;
+	margin: -160px 0 0 -130px;
+	z-index: 999;/* 设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。 */
+}
+
+/* 负责翻转 */
+.photo_wrap{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-transform-style: preserve-3d;/* 让里面的两个子元素支持正面和反面 */
+	-moz-transform-style: preserve-3d;/* 让里面的两个子元素支持正面和反面 */
+	-webkit-transition: all 0.6s;/* 0.6秒,不要忘了s */
+	-moz-transition: all 0.6s;/* 0.6秒,不要忘了s */
+}
+
+.photo_wrap .side_front{
+    -webkit-transform:rotateY(0deg);
+    -moz-transform:rotateY(0deg);
+}
+
+.photo_wrap .side_back{
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+}
+
+.photo_wrap .side{
+	-webkit-backface-visibility: hidden;/* 转到反面隐藏 */
+	-moz-backface-visibility: hidden;/* 转到反面隐藏 */
+}
+
+.photo_front .photo_wrap{
+    -webkit-transform:rotateY(0deg);
+    -moz-transform:rotateY(0deg);
+}
+
+.photo_back .photo_wrap{
+    -webkit-transform:rotateY(180deg);/* rotate别忘写t */
+    -moz-transform:rotateY(180deg);/* rotate别忘写t */
+} 
+
+/* 控制按钮的样式 */
+/* @font-face{
+	font-family: icons;
+	src: url('icons.woff') format('woff');
+	font-weight: normal;
+	font-size: normal;
+} */
+
+.nav{
+	width: 80%;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	left: 10%;
+	bottom: 20px;
+	z-index: 999;
+	/* background: #fff; */
+	text-align: center;
+}
+
+/* 普通样式 */
+.nav .i{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    cursor: pointer;/* 鼠标移上去出现手的状态 */
+    background: #aaa;
+    text-align: center;
+    border-radius: 50%;/* 按钮变成圆的 */
+    -webkit-transform: scale(0.35);/* 缩放 */
+    -moz-transform: scale(0.35);/* 缩放 */
+}
+
+/* .nav .i:after{增加after伪类
+	content: "\e1000";
+	font-family: 'icons';
+	font-size: 80%;
+	display: inline-block;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+} */
+
+/* 当前选中样式 */
+.nav .i_current{
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+}
+
+/* 背面样式 */
+.nav .i_back{
+
+}
+
+/* 优化样式 */
+.photo{
+	left: 50%;
+	top: 50%;
+	margin: -160px 0 0 -130px;
+}
+
+.photo_wrap{
+	-webkit-transform-origin: 0% 50%;
+	-moz-transform-origin: 0% 50%;
+}
+
+.photo_front .photo_wrap{
+	-webkit-transform: translate(0px, 0px) rotateY(0deg);
+	-moz-transform: translate(0px, 0px) rotateY(0deg);
+}
+
+.photo_back .photo_wrap{
+	-webkit-transform: translate(260px, 0px) rotateY(180deg);
+	-moz-transform: translate(260px, 0px) rotateY(180deg);
+}
